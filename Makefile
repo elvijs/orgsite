@@ -1,4 +1,7 @@
-SETTINGS=settings.env  # not checked in; Exposes ORG_DIR and REMOTE envvars
+# Expose ORG_DIR and REMOTE envvars for the rest of the scripts. NOT checked in.
+include settings.env
+export $(shell sed 's/=.*//' settings.env)  # export all the envvars
+
 STATIC_SITE=html
 
 # use -- -Q to pass in argv into the script; test using the following
@@ -14,10 +17,3 @@ server:
 
 clean:
 	rm -Rf $(STATIC_SITE)/
-
-
-
-
-
-prepare_env:
-	source ~/.bash_profile && source $(SETTINGS)
