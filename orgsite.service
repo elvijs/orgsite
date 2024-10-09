@@ -1,0 +1,14 @@
+[Unit]
+Description=Orgsite server
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/orgsite
+ExecStart=/usr/bin/python3 -m http.server 8002
+Restart=on-failure
+RestartSec=1s
+
+[Install]
+WantedBy=multi-user.target

@@ -1,7 +1,6 @@
 ;; Set the package installation directory so that packages aren't stored in the
 ;; ~/.emacs.d/elpa path.
 (require 'package)
-(setq out-path "./html")
 (setq package-user-dir (expand-file-name "./.packages"))
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("elpa" . "https://elpa.gnu.org/packages/")))
@@ -16,11 +15,13 @@
 (require 'ox-publish)
 
 ;; Define the publishing project
+; (setq out-path "./html")
 (setq contents-dir (nth 2 argv))  ;; 2nd argv should be the path to org dir
-
+(setq out-path (nth 3 argv))  ;; 3nd argv should be the out-path
 ;;  use -- -Q to pass in argv into the script; test using the following
-(print argv)
+;; (print argv)
 ;; (print (nth 2 argv))
+;; (print (nth 3 argv))
 
 ;; from my .emacs file
 (require 'ox-publish)
