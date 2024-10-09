@@ -5,7 +5,7 @@ export $(shell sed 's/=.*//' settings.env)  # export all the envvars
 
 # use -- -Q to pass in argv into the elisp script
 html: clean
-	emacs -Q --script build-site.el -- -Q $(ORG_DIR) $(HTML_DIR)
+	emacs -Q --script build-site.el -- -Q $(ORG_DIR) $(HTML_DIR) && python3 fix_screenshots.py
 
 clean:
 	rm -Rf $(HTML_DIR)/
@@ -19,9 +19,6 @@ local_server:
 #
 deploy_html: html
 	scp -r $(HTML_DIR)/* $(REMOTE_DESTINATION)
-
-set_up_1a_systemd_service:
-	scp orgsite.service $(REMOTE_USER)@$(REMOTE_HOST):/etc/systemd/system/$(SERVICE_NAME).service
 
 
 set_up_a_systemd_service:
@@ -47,3 +44,4 @@ check_service_status:
 # Followed https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/install-and-setup/tunnel-guide/local/as-a-service/linux/
 # But had to manually point to the config folder
 # sudo cloudflared --config /home/pi/.cloudflared/config.yml service install
+# See org projects for more info
