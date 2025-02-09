@@ -8,8 +8,7 @@ Define the `ORG_DIR` environment variable in `settings.env` to point to
 the directory containing your org files.
 
 ```bash
-make html
-make server
+make deploy_html
 ```
 
 # Credits
